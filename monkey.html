@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <link rel="stylesheet" href="monkey.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<body>
+    <div class="banner"></div>
+    <div class="monkey"></div>
+
+    <div class="container"> something</div>
+    <button onclick="myAlert()">Alert</button>
+
+</body>
+<script>
+
+function myAlert() {
+    alert("hey");
+}
+    // Closest functional code below
+
+    // Set variables for banner and monkey
+    let banner = document.querySelector(".banner");
+    let themonkey = document.querySelector(".monkey");
+
+    // Getting function from click and position 
+    banner.addEventListener("click", getClickPosition, false);
+ 
+    function getClickPosition(e) {
+        let xPosition = e.clientX;
+        let yPosition = e.clientY;
+
+        let translate3dValue = translate3d(" + xPosition + px, + yPosition + px, + 0");
+        themonkey.style.transform = translate3dValue;
+
+    };
+
+    document.addEventListener("click", onmousedown);
+
+    // End of the original code
+
+    // Getting information and specific point from mouse
+    function onmousedown(event) {
+        moveAt(event.pageX, event.pageY);
+    }
+    
+    // Getting the monkey to align with the point of the mouse
+    function moveAt(pageX, pageY) {
+        themonkey.style.left = pageX - (themonkey.offsetWidth / 1) + "px";
+        themonkey.style.top = pageY - (themonkey.offsetHeight / 1) + "px";
+    }
+    
+
+    // End of functional code
+
+
+
+
+    // themonkey.onclick = function (event) {
+    //     themonkey.style.position = "absolute";
+    //     themonkey.style.zIndex = 1000;
+    //     document.body.append(themonkey);
+    //     document.body.append(themonkey);
+    //     moveAt(event.pageX, event.pageY);
+    // };
+
+
+
+
+    // themonkey.onmousedown = function (event) { // (1) start the process
+
+    //     // (2) prepare to moving: make absolute and on top by z-index
+    //     themonkey.style.position = "absolute";
+    //     themonkey.style.zIndex = 1000;
+    //     // move it out of any current parents directly into body
+    //     // to make it positioned relative to the body
+    //     document.body.append(themonkey);
+    //     // ...and put that absolutely positioned themonkey under the cursor
+
+    //     moveAt(event.pageX, event.pageY);
+
+    //     // centers the themonkey at (pageX, pageY) coordinates
+    //     function moveAt(pageX, pageY) {
+    //         themonkey.style.left = pageX - themonkey.offsetWidth / 2 + "px";
+    //         themonkey.style.top = pageY - themonkey.offsetHeight / 2 + "px";
+    //     }
+
+    //     function onMouseMove(event) {
+    //         moveAt(event.pageX, event.pageY);
+    //     }
+
+    //     // (3) move the themonkey on mousemove
+    //     document.addEventListener("mousemove", onMouseMove);
+
+    //     // (4) drop the themonkey, remove unneeded handlers
+    //     themonkey.onmouseup = function () {
+    //         document.removeEventListener("mousemove", onMouseMove);
+    //         themonkey.onmouseup = null;
+    //     };
+
+    //     themonkey.ondragstart = function () {
+    //         return false;
+    //     };
+    // };
+
+
+
+</script>
+
+</html>
